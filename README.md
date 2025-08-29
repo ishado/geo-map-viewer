@@ -6,6 +6,10 @@ A web-based geographic map viewer application.
 
 This project is a web application that allows users to view and interact with geographic maps.
 
+## Demo
+
+You can view a live demo of the application [here](https://ishado.github.io/geo-map-viewer/).
+
 ## Features
 
 - Interactive map visualization
