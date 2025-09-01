@@ -154,14 +154,46 @@
     </footer>
 
     <script>
-        // تهيئة الخريطة
-        const map = L.map('map').setView([30.7327, 31.7195], 8); // إحداثيات القاهرة كنقطة بداية
-		map.attributionControl.setPrefix('عرض خرائط من خلال ملف KMZ');
+        // تعريف طبقات الخريطة
+        const openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>'
+        });
 
-        // إضافة طبقة الخريطة
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>',
-        }).addTo(map);
+        const googleRoads = L.tileLayer('http://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>'
+        });
+
+        const googleSatellite = L.tileLayer('http://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>'
+        });
+
+        const googleSatelliteHD = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>'
+        });
+
+        const googleHybrid = L.tileLayer('http://mt0.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            attribution: '&copy; خريطة تفاعلية | <b>تطوير : شادي عبدالسلام</b>'
+        });
+
+        // تعريف مجموعة الطبقات
+        const baseMaps = {
+            "OpenStreetMap": openStreetMap,
+            "خريطة جوجل": googleRoads,
+            "صور فضائية": googleSatellite,
+            "صور فضائية عالية الدقة": googleSatelliteHD,
+            "خريطة هجينة": googleHybrid
+        };
+
+        // تهيئة الخريطة مع الطبقة الافتراضية
+        const map = L.map('map', {
+            layers: [openStreetMap] // الطبقة الافتراضية
+        }).setView([30.7327, 31.7195], 8); // إحداثيات القاهرة كنقطة بداية
+
+        map.attributionControl.setPrefix('عرض خرائط من خلال ملف KMZ');
+
+        // إضافة تحكم الطبقات
+        L.control.layers(baseMaps).addTo(map);
 
         // المتغيرات
         const fileInput = document.getElementById('file-input');

@@ -45,10 +45,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Todos
 
 - [X] Import KMZ files and display on the map
+- [X] Add map layers
 - [ ] Import KML files and display on the map
 - [ ] Translate the application to English
 - [ ] Dark mode support
-- [ ] Add map layers
 
 
 ## Author
